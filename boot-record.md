@@ -1,7 +1,8 @@
 # boot record analysis tips
-
+```
 < rhel6-cust.img: customer's boot-failed instance
 > rhel6-150.img: rhel6 RHEL-6.9_HVM-20171024-x86_64-2-Hourly2-GP2 (ami-4ca80e2a)
+```
 
 ```
 $ hexdump -C ./rhel6-cust.img|head -n 128 > rhel6-cust-2048.img
