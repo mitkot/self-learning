@@ -3,10 +3,11 @@
 < rhel6-cust.img: customer's boot-failed instance
 > rhel6-150.img: rhel6 RHEL-6.9_HVM-20171024-x86_64-2-Hourly2-GP2 (ami-4ca80e2a)
 
+```
 $ hexdump -C ./rhel6-cust.img|head -n 128 > rhel6-cust-2048.img
 $ hexdump -C ./rhel6-150.img |head -n 128 > rhel6-150-2048.img
 
-diff rhel6-cust-2048.img rhel6-150-2048.img
+$ diff rhel6-cust-2048.img rhel6-150-2048.img
 
 46,49c46,49
 < 00100400 00 00 96 00 fb fe 57 02 bc fd 1d 00 4f 7a 21 02 |......W.....Oz!.|
@@ -35,24 +36,30 @@ diff rhel6-cust-2048.img rhel6-150-2048.img
 ---
 > 00100570 00 00 00 00 04 00 00 00 35 62 52 00 00 00 00 00 |........5bR.....|
 72,128c72,128
+```
 
 
 # Write binary with dd
 ## 00100400
+```
 $ printf "%d\n" 0x100400
 1049600
 
 $ echo -en '\x00\x00\x96\x00\xfb\xfe\x57\x02\x26\xfe\x1d\x00\xfb\x64\x47\x02\x09\x23\x95\x00\x00\x00\x00\x00\x02\x00\x00\x00\x02\x00\x00\x00\x00\x80\x00\x00\x00\x80\x00\x00\x00\x20\x00\x00\x37\x84\xd1\x5b\x67\x8e\xee\x59\x02\x00\xff\xff\x53\xef\x01\x00\x01\x00\x00\x00' |dd of=/dev/xvdf bs=1 seek=1049600 conv=notrunc
+```
 
 ## 00100480
+```
 $ printf "%d\n" 0x100480
 1049728
 
 $ echo -en '\x00\x00\x00\x00\x00\x00\x00\x00\x2f\x00\x68\xfc\x21\x04\x04\x88\xff\xff\x36\x78\x7c\x98\x00\x00\x00\x00\xc0\x76\x74\x03\x04\x88\xff\xff\xc0\x76\x74\x03\x04\x88\xff\xff\x80\xfe\xe3\x02\x04\x88\xff\xff\x80\xb6\x80\x06\x04\x88\xff\xff\x00\x5c\x09\xa0\xff\xff\xff\xff\xe8\x34\xaa\x06\x04\x88\x00\x00\x00\x00\x00\x00\x76\x01'|dd of=/dev/xvdf bs=1 seek=1049728 conv=notrunc
-
+```
 
 ## 00100570
+```
 $ printf "%d\n" 0x00100570
 1049968
 
-$ echo -en '\x00\x00\x00\x00\x04\x00\x00\x00\x35\x62\x52\x00\x00\x00\x00\x00'|dd of=/dev/xvdf bs=1 seek=1049968 conv=notrunc 
+$ echo -en '\x00\x00\x00\x00\x04\x00\x00\x00\x35\x62\x52\x00\x00\x00\x00\x00'|dd of=/dev/xvdf bs=1 seek=1049968 conv=notrunc
+```
